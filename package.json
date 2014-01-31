@@ -1,0 +1,29 @@
+{
+  "author": {
+    "name":               "Franklin van de Meent",
+    "email":              "fr@nkl.in",
+    "url":                "https://frankl.in"
+  },
+  "name":                 "readcsv",
+  "description":          "Parse CSV file with auto format detection",
+  "version":              "1.0.0",
+  "repository": {
+    "type":               "git",
+    "url":                "git://github.com/fvdm/nodejs-readcsv.git"
+  },
+  "bugs": {
+    "url":                "https://github.com/fvdm/nodejs-readcsv/issues"
+  },
+  "main":                 "readcsv.js",
+  "dependencies":         {},
+  "devDependencies":      {},
+  "optionalDependencies": {},
+  "engines": {
+    "node":               "*"
+  },
+  "keywords":             ["csv", "fileformat", "parser"],
+  "license": {
+    "type":               "Public Domain",
+    "url":                "https://github.com/fvdm/nodejs-readcsv/raw/master/LICENSE"
+  }
+}
