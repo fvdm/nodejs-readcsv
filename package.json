@@ -1,35 +1,29 @@
 {
   "author": {
-    "name": "Franklin van de Meent",
-    "email": "fr@nkl.in",
-    "url": "https://frankl.in"
+    "name":               "Franklin van de Meent",
+    "email":              "fr@nkl.in",
+    "url":                "https://frankl.in"
   },
-  "name": "readcsv",
-  "description": "Parse CSV file with auto format detection",
-  "version": "1.0.0",
+  "name":                 "readcsv",
+  "description":          "Parse CSV file with auto format detection",
+  "version":              "1.0.0",
   "repository": {
-    "type": "git",
-    "url": "git://github.com/fvdm/nodejs-readcsv.git"
+    "type":               "git",
+    "url":                "git://github.com/fvdm/nodejs-readcsv.git"
   },
   "bugs": {
-    "url": "https://github.com/fvdm/nodejs-readcsv/issues"
+    "url":                "https://github.com/fvdm/nodejs-readcsv/issues"
   },
-  "main": "readcsv.js",
-  "dependencies": {},
-  "devDependencies": {
-    "dotest": "^1.9.0",
-    "eslint": "^2.8.0"
-  },
+  "main":                 "readcsv.js",
+  "dependencies":         {},
+  "devDependencies":      {},
+  "optionalDependencies": {},
   "engines": {
-    "node": ">=0.12"
+    "node":               "*"
   },
-  "scripts": {
-    "test": "st=0; eslint . || st=1; node test.js || st=1; exit $st"
-  },
-  "keywords": [
-    "csv",
-    "fileformat",
-    "parser"
-  ],
-  "license": "Unlicense"
+  "keywords":             ["csv", "fileformat", "parser"],
+  "license": {
+    "type":               "Public Domain",
+    "url":                "https://github.com/fvdm/nodejs-readcsv/raw/master/LICENSE"
+  }
 }
