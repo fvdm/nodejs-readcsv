@@ -27,11 +27,11 @@ module.exports = function (head, file, callback) {
       callback (err);
       return;
     }
-    
+
     data = data.toString ('utf8');
     linebreak = data.slice (-2) === '\r\n' ? '\r\n' : '\n';
     data = data.trim () .split (linebreak);
-    
+
     if (data [0] .match ('\',\'')) {
       sep = ',';
       quotes = '\'';
@@ -48,7 +48,7 @@ module.exports = function (head, file, callback) {
       callback (new Error ('cannot detect line format'));
       return;
     }
-    
+
     data.forEach (function (line) {
       var tx = {};
 
@@ -65,7 +65,7 @@ module.exports = function (head, file, callback) {
         output.push (line);
       }
     });
-    
+
     callback (null, output);
   });
 };
