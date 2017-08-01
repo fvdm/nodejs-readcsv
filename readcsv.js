@@ -10,14 +10,14 @@ License:       Unlicense / Public Domain
 
 var fs = require ('fs');
 
-module.exports = function (head, file, callback) {
+module.exports = (head, file, callback) => {
   if (typeof file === 'function') {
     callback = file;
     file = head;
     head = null;
   }
 
-  fs.readFile (file, function (err, data) {
+  fs.readFile (file, { encoding: 'utf8' }, (err, data) => {
     var output = [];
     var sep = ',';
     var quotes = '\'';
@@ -28,20 +28,20 @@ module.exports = function (head, file, callback) {
       return;
     }
 
-    data = data.toString ('utf8');
     linebreak = data.slice (-2) === '\r\n' ? '\r\n' : '\n';
-    data = data.trim () .split (linebreak);
+    data = data.trim()
+      .split (linebreak);
 
-    if (data [0] .match ('\',\'')) {
+    if (data[0].match ('\',\'')) {
       sep = ',';
       quotes = '\'';
-    } else if (data [0] .match ('\';\'')) {
+    } else if (data[0].match ('\';\'')) {
       sep = ';';
       quotes = '\'';
-    } else if (data [0] .match ('","')) {
+    } else if (data[0].match ('","')) {
       sep = ',';
       quotes = '"';
-    } else if (data [0] .match ('";"')) {
+    } else if (data[0].match ('";"')) {
       sep = ';';
       quotes = '"';
     } else {
@@ -49,16 +49,16 @@ module.exports = function (head, file, callback) {
       return;
     }
 
-    data.forEach (function (line) {
+    data.forEach ((line) => {
       var tx = {};
 
       line = line.split (quotes + sep + quotes);
-      line [0] = line [0] .slice (1);
-      line [line.length - 1] = line [line.length - 1] .slice (0, -1);
+      line[0] = line[0].slice (1);
+      line[line.length - 1] = line[line.length - 1].slice (0, -1);
 
       if (head) {
-        head.forEach (function (name, key) {
-          tx [name] = line [key];
+        head.forEach ((name, key) => {
+          tx[name] = line[key];
         });
         output.push (tx);
       } else {
