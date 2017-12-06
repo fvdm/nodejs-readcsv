@@ -49,17 +49,20 @@ module.exports = (head, file, callback) => {
       return;
     }
 
-    data.forEach ((line) => {
+    data.forEach ((line, i) => {
       var tx = {};
 
       line = line.split (quotes + sep + quotes);
       line[0] = line[0].slice (1);
       line[line.length - 1] = line[line.length - 1].slice (0, -1);
 
-      if (head) {
+      if (head === true && i === 0) {
+        head = line;
+      } else if (head) {
         head.forEach ((name, key) => {
           tx[name] = line[key];
         });
+
         output.push (tx);
       } else {
         output.push (line);
@@ -69,3 +72,4 @@ module.exports = (head, file, callback) => {
     callback (null, output);
   });
 };
+
