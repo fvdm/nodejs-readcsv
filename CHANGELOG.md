@@ -1,3 +1,9 @@
+#### 1.2.1 (2017-12-06)
+
+##### Documentation Changes
+
+* **badges:** Link bitHound badges to master ([39ff95d9](https://github.com/fvdm/nodejs-readcsv/commit/39ff95d9324197bd1e59c31d89c2e2db5c4b5403))
+
 ### 1.2.0 (2017-12-06)
 
 ##### Refactors
