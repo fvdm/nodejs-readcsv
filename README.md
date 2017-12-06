@@ -1,6 +1,8 @@
 readcsv
 =======
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/fvdm/nodejs-readcsv.svg)](https://greenkeeper.io/)
+
 Parse CSV file with format detection
 
 [![Build Status](https://travis-ci.org/fvdm/nodejs-readcsv.svg?branch=master)](https://travis-ci.org/fvdm/nodejs-readcsv)
