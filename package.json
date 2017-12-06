@@ -6,7 +6,7 @@
   },
   "name": "readcsv",
   "description": "Parse CSV file with auto format detection",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/fvdm/nodejs-readcsv.git"
