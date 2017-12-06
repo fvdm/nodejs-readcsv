@@ -2,8 +2,6 @@
 
 Parse CSV file with format detection for Node.js
 
-[![Build Status](https://travis-ci.org/fvdm/nodejs-readcsv.svg?branch=master)](https://travis-ci.org/fvdm/nodejs-readcsv)
-
 [![Build Status](https://travis-ci.org/fvdm/nodejs-readcsv?branch=master)](https://travis-ci.org/fvdm/nodejs-readcsv)
 [![Coverage Status](https://coveralls.io/repos/github/fvdm/nodejs-readcsv/badge.svg?branch=master)](https://coveralls.io/github/fvdm/nodejs-readcsv?branch=master)
 [![bitHound Dependencies](https://www.bithound.io/github/fvdm/nodejs-readcsv/badges/dependencies.svg)](https://www.bithound.io/github/fvdm/nodejs-readcsv/develop/dependencies/npm)
