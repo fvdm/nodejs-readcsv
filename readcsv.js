@@ -10,6 +10,19 @@ License:       Unlicense (Public Domain)
 
 const fs = require ('fs');
 
+
+/**
+ * Read CSV file and parse to data
+ *
+ * @callback  callback
+
+ * @param     {bool|array}  [head]    Read fieldnamed from first line (true) or custom
+ * @param     {string}      file      Path the CSV file
+ * @param     {function}    callback  `(err, data)`
+
+ * @return    {void}
+ */
+
 module.exports = (head, file, callback) => {
   if (typeof file === 'function') {
     callback = file;
