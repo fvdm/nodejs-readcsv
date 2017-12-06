@@ -59,6 +59,11 @@ dotest.add ('Module', test => {
 });
 
 
+dotest.add ('Comma-quoted - without head - dos linebreaks', test => {
+  testFileNohead ('./test/test.comma-quoted-dos.csv', test);
+});
+
+
 dotest.add ('Comma-quoted - without head', test => {
   testFileNohead ('./test/test.comma-quoted.csv', test);
 });
@@ -72,6 +77,19 @@ dotest.add ('Comma-quoted - custom head', test => {
 });
 
 
+dotest.add ('Comma-single-quoted - without head', test => {
+  testFileNohead ('./test/test.comma-single-quoted.csv', test);
+});
+
+dotest.add ('Comma-single-quoted - auto head', test => {
+  testFileAuto (true, './test/test.comma-single-quoted.csv', test);
+});
+
+dotest.add ('Comma-single-quoted - custom head', test => {
+  testFileCustom (customHead, './test/test.comma-single-quoted.csv', test);
+});
+
+
 dotest.add ('Semi-quoted - without head', test => {
   testFileNohead ('./test/test.semi-quoted.csv', test);
 });
@@ -82,6 +100,19 @@ dotest.add ('Semi-quoted - auto head', test => {
 
 dotest.add ('Semi-quoted - custom head', test => {
   testFileCustom (customHead, './test/test.semi-quoted.csv', test);
+});
+
+
+dotest.add ('Semi-single-quoted - without head', test => {
+  testFileNohead ('./test/test.semi-single-quoted.csv', test);
+});
+
+dotest.add ('Semi-single-quoted - auto head', test => {
+  testFileAuto (true, './test/test.semi-single-quoted.csv', test);
+});
+
+dotest.add ('Semi-single-quoted - custom head', test => {
+  testFileCustom (customHead, './test/test.semi-single-quoted.csv', test);
 });
 
 
