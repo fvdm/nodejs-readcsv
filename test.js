@@ -116,4 +116,24 @@ dotest.add ('Semi-single-quoted - custom head', test => {
 });
 
 
+dotest.add ('Error - invalid file', test => {
+  app ('./invalid.file', (err, data) => {
+    test()
+      .isError ('fail', 'err', err)
+      .isUndefined ('fail', 'data', data)
+      .done();
+  });
+});
+
+dotest.add ('Error - cannot detect line format', test => {
+  app ('./test/test.invalid-line-format.csv', (err, data) => {
+    test()
+      .isError ('fail', 'err', err)
+      .isExactly ('fail', 'err.message', err && err.message, 'cannot detect line format')
+      .isUndefined ('fail', 'data', data)
+      .done();
+  });
+});
+
+
 dotest.run ();
