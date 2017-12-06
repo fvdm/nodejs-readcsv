@@ -1,3 +1,9 @@
+#### 1.1.1 (2017-12-06)
+
+##### Documentation Changes
+
+* **badges:** Fixed Travis CI badge ([79251556](https://github.com/fvdm/nodejs-readcsv/commit/79251556784c13792bb6e35cd54bf826cc36d072))
+
 ### 1.1.0 (2017-12-06)
 
 ##### Chores
