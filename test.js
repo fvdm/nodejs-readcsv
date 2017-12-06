@@ -1,5 +1,5 @@
-var dotest = require ('dotest');
-var app = require ('./');
+const dotest = require ('dotest');
+const app = require ('./');
 
 const customHead = ['Test', 'Times', 'Ahead'];
 

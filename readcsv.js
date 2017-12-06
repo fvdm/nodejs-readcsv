@@ -8,7 +8,7 @@ License:       Unlicense / Public Domain
                (https://github.com/fvdm/nodejs-readcsv/raw/master/LICENSE)
 */
 
-var fs = require ('fs');
+const fs = require ('fs');
 
 module.exports = (head, file, callback) => {
   if (typeof file === 'function') {
@@ -18,10 +18,10 @@ module.exports = (head, file, callback) => {
   }
 
   fs.readFile (file, { encoding: 'utf8' }, (err, data) => {
-    var output = [];
-    var sep = ',';
-    var quotes = '\'';
-    var linebreak;
+    let output = [];
+    let sep = ',';
+    let quotes = '\'';
+    let linebreak;
 
     if (err) {
       callback (err);
@@ -50,7 +50,7 @@ module.exports = (head, file, callback) => {
     }
 
     data.forEach ((line, i) => {
-      var tx = {};
+      let tx = {};
 
       line = line.split (quotes + sep + quotes);
       line[0] = line[0].slice (1);
