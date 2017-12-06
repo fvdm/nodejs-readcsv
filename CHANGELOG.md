@@ -1,3 +1,14 @@
+### 1.2.0 (2017-12-06)
+
+##### Refactors
+
+* **main:** Rewrite to cleaner style ([9a194173](https://github.com/fvdm/nodejs-readcsv/commit/9a1941733c66c243e1522d4c875943d84cbd3828))
+
+##### Tests
+
+* **errors:** Added error tests ([32f4e22a](https://github.com/fvdm/nodejs-readcsv/commit/32f4e22a28e705afa70960b1ec97dcbbdaa174a9))
+* **main:** Added more file formats ([b240a816](https://github.com/fvdm/nodejs-readcsv/commit/b240a8160a30f82155465922cd8c6aab82d9a82f))
+
 #### 1.1.1 (2017-12-06)
 
 ##### Documentation Changes
