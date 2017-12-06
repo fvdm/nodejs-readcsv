@@ -1,20 +1,25 @@
-readcsv
-=======
+# readcsv
 
-Parse CSV file with format detection
+Parse CSV file with format detection for Node.js
 
 [![Build Status](https://travis-ci.org/fvdm/nodejs-readcsv.svg?branch=master)](https://travis-ci.org/fvdm/nodejs-readcsv)
 
+[![Build Status](https://travis-ci.org/fvdm/nodejs-readcsv?branch=master)](https://travis-ci.org/fvdm/nodejs-readcsv)
+[![Coverage Status](https://coveralls.io/repos/github/fvdm/nodejs-readcsv/badge.svg?branch=master)](https://coveralls.io/github/fvdm/nodejs-readcsv?branch=master)
+[![bitHound Dependencies](https://www.bithound.io/github/fvdm/nodejs-readcsv/badges/dependencies.svg)](https://www.bithound.io/github/fvdm/nodejs-readcsv/develop/dependencies/npm)
+[![bitHound Code](https://www.bithound.io/github/fvdm/nodejs-readcsv/badges/code.svg)](https://www.bithound.io/github/fvdm/nodejs-readcsv)
 
-Example
--------
+* [Node.js](https://nodejs.org/)
+
+
+## Example
 
 ```js
-var readcsv = require ('readcsv');
+const readcsv = require ('readcsv');
 
-var file = '/path/to/file.csv';
+const file = '/path/to/file.csv';
 
-readcsv (file, function (err, data) {
+readcsv (true, file, (err, data) => {
   if (err) {
     console.log (err);
     return;
@@ -24,11 +29,81 @@ readcsv (file, function (err, data) {
 });
 ```
 
+Input:
 
-Installation
-------------
+```txt
+"One","Two","Three"
+"Hello","World","!!"
+```
 
-`npm install readcsv`
+Output:
+
+```js
+[
+  {
+    One: 'Hello',
+    Two: 'World',
+    Three: '!!'
+  }
+]
+```
+
+
+## Installation
+
+`npm i readcsv --save`
+
+
+## Usage
+
+**readcsv ( [head], file, callback )**
+
+
+#### Only parse the lines
+
+Result: `array` with `array` items.
+
+```js
+readcsv ('file.csv', (err, data) => {
+  if (err) { return console.log (err); }
+
+  data.forEach ((line, i) => {
+    console.log (i + ' - ' + line[0] + ' - ' + line[1]);
+  });
+});
+```
+
+
+#### Read the header from the first line
+
+Result: `array` with `object` items.
+
+```js
+readcsv (true, 'file.csv', (err, data) => {
+  if (err) { return console.log (err); }
+
+  data.forEach (line => {
+    console.log (line.Name + ' lives in ' + line.City);
+  });
+});
+```
+
+
+#### Set a custom header
+
+Result: `array` with `object` items.
+
+```js
+const head = ['Name', 'City'];
+
+readcsv (head, 'file.csv', (err, data) => {
+  if (err) { return console.log (err); }
+
+  data.forEach (line => {
+    console.log (line.Name + ' lives in ' + line.City);
+  });
+});
+```
 
 
 License
@@ -65,4 +140,4 @@ Author
 
 [Franklin van de Meent](https://frankl.in)
 
-[![Buy me a coffee](https://frankl.in/u/kofi/kofi-readme.png)](https://ko-fi.com/franklin)
+[Buy me a coffee](https://ko-fi.com/franklin)
