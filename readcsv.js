@@ -12,6 +12,82 @@ const fs = require ('fs');
 
 
 /**
+ * Parse plain text to lines
+ * and detect CSV format
+ *
+ * @param   {string}  data  Plain text document
+ * @return  {object}        props: lines, sep, quotes
+ */
+
+function parseText (data) {
+  const linebreak = data.slice (-2) === '\r\n' ? '\r\n' : '\n';
+
+  let result = {};
+
+  result.lines = data
+    .trim()
+    .split (linebreak);
+
+  if (result.lines[0].match ('\',\'')) {
+    result.sep = ',';
+    result.quotes = '\'';
+  } else if (result.lines[0].match ('\';\'')) {
+    result.sep = ';';
+    result.quotes = '\'';
+  } else if (result.lines[0].match ('","')) {
+    result.sep = ',';
+    result.quotes = '"';
+  } else if (result.lines[0].match ('";"')) {
+    result.sep = ';';
+    result.quotes = '"';
+  } else {
+    result = null;
+  }
+
+  return result;
+}
+
+
+/**
+ * Parse each line to their fields
+ *
+ * @param   {object}      data
+ * @param   {array}       data.lines   Lines from the text file
+ * @param   {string}      data.quotes  `'` or `"`
+ * @param   {string}      data.sep     `,` or `;`
+ * @param   {bool|array}  head         Fields: true = use first line, array is custom
+ *
+ * @return  {array}                    Parsed lines
+ */
+
+function parseLines (data, head) {
+  let output = [];
+
+  data.lines.forEach ((line, i) => {
+    let tx = {};
+
+    line = line.split (data.quotes + data.sep + data.quotes);
+    line[0] = line[0].slice (1);
+    line[line.length - 1] = line[line.length - 1].slice (0, -1);
+
+    if (head === true && i === 0) {
+      head = line;
+    } else if (head) {
+      head.forEach ((name, key) => {
+        tx[name] = line[key];
+      });
+
+      output.push (tx);
+    } else {
+      output.push (line);
+    }
+  });
+
+  return output;
+}
+
+
+/**
  * Read CSV file and parse to data
  *
  * @callback  callback
@@ -27,63 +103,28 @@ module.exports = (head, file, callback) => {
   if (typeof file === 'function') {
     callback = file;
     file = head;
-    head = null;
+    head = false;
   }
 
-  fs.readFile (file, { encoding: 'utf8' }, (err, data) => {
-    let output = [];
-    let sep = ',';
-    let quotes = '\'';
-    let linebreak;
+  fs.readFile (file, { encoding: 'utf8' }, (err, text) => {
+    let error;
+    let result;
+    let data;
 
     if (err) {
       callback (err);
       return;
     }
 
-    linebreak = data.slice (-2) === '\r\n' ? '\r\n' : '\n';
-    data = data
-      .trim()
-      .split (linebreak);
+    data = parseText (text);
 
-    if (data[0].match ('\',\'')) {
-      sep = ',';
-      quotes = '\'';
-    } else if (data[0].match ('\';\'')) {
-      sep = ';';
-      quotes = '\'';
-    } else if (data[0].match ('","')) {
-      sep = ',';
-      quotes = '"';
-    } else if (data[0].match ('";"')) {
-      sep = ';';
-      quotes = '"';
+    if (data) {
+      result = parseLines (data, head);
+      callback (null, result);
     } else {
-      callback (new Error ('cannot detect line format'));
-      return;
+      error = new Error ('cannot detect line format');
+      callback (error);
     }
-
-    data.forEach ((line, i) => {
-      let tx = {};
-
-      line = line.split (quotes + sep + quotes);
-      line[0] = line[0].slice (1);
-      line[line.length - 1] = line[line.length - 1].slice (0, -1);
-
-      if (head === true && i === 0) {
-        head = line;
-      } else if (head) {
-        head.forEach ((name, key) => {
-          tx[name] = line[key];
-        });
-
-        output.push (tx);
-      } else {
-        output.push (line);
-      }
-    });
-
-    callback (null, output);
   });
 };
 
