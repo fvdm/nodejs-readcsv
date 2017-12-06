@@ -4,7 +4,7 @@ Description:   Parse CSV file with automatic format detection
 Author:        Franklin van de Meent (https://frankl.in)
 Source code:   https://github.com/fvdm/nodejs-readcsv
 Feedback:      https://github.com/fvdm/nodejs-readcsv/issues
-License:       Unlicense / Public Domain
+License:       Unlicense (Public Domain)
                (https://github.com/fvdm/nodejs-readcsv/raw/master/LICENSE)
 */
 
@@ -29,7 +29,8 @@ module.exports = (head, file, callback) => {
     }
 
     linebreak = data.slice (-2) === '\r\n' ? '\r\n' : '\n';
-    data = data.trim()
+    data = data
+      .trim()
       .split (linebreak);
 
     if (data[0].match ('\',\'')) {
