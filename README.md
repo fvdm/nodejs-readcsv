@@ -1,13 +1,11 @@
 # readcsv
 
-Parse CSV file with format detection for Node.js
+Parse CSV file with format detection for [Node.js](https://nodejs.org/)
 
 [![Build Status](https://travis-ci.org/fvdm/nodejs-readcsv?branch=master)](https://travis-ci.org/fvdm/nodejs-readcsv)
 [![Coverage Status](https://coveralls.io/repos/github/fvdm/nodejs-readcsv/badge.svg?branch=master)](https://coveralls.io/github/fvdm/nodejs-readcsv?branch=master)
 [![bitHound Dependencies](https://www.bithound.io/github/fvdm/nodejs-readcsv/badges/dependencies.svg)](https://www.bithound.io/github/fvdm/nodejs-readcsv/develop/dependencies/npm)
 [![bitHound Code](https://www.bithound.io/github/fvdm/nodejs-readcsv/badges/code.svg)](https://www.bithound.io/github/fvdm/nodejs-readcsv)
-
-* [Node.js](https://nodejs.org/)
 
 
 ## Example
@@ -54,7 +52,7 @@ Output:
 
 ## Usage
 
-**readcsv ( [head], file, callback )**
+### readcsv ( [head], file, callback )
 
 
 #### Only parse the lines
