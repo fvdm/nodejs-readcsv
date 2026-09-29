@@ -2,36 +2,33 @@
 
 Parse CSV file with format detection for [Node.js](https://nodejs.org/)
 
-[![npm](https://img.shields.io/npm/v/readcsv.svg?maxAge=3600)](https://github.com/fvdm/nodejs-readcsv/blob/master/CHANGELOG.md)
-[![Build Status](https://travis-ci.org/fvdm/nodejs-readcsv.svg?branch=master)](https://travis-ci.org/fvdm/nodejs-readcsv)
+[![Changelog](https://img.shields.io/npm/v/readcsv.svg?maxAge=3600)](https://github.com/fvdm/nodejs-readcsv/releases)
+[![Build Status](https://github.com/fvdm/nodejs-readcsv/actions/workflows/node.js.yml/badge.svg?branch=master)](https://github.com/fvdm/nodejs-readcsv/actions/workflows/node.js.yml)
 [![Coverage Status](https://coveralls.io/repos/github/fvdm/nodejs-readcsv/badge.svg?branch=master)](https://coveralls.io/github/fvdm/nodejs-readcsv?branch=master)
-[![bitHound Dependencies](https://www.bithound.io/github/fvdm/nodejs-readcsv/badges/master/dependencies.svg)](https://www.bithound.io/github/fvdm/nodejs-readcsv/master/dependencies/npm)
-[![bitHound Code](https://www.bithound.io/github/fvdm/nodejs-readcsv/badges/master/code.svg)](https://www.bithound.io/github/fvdm/nodejs-readcsv/master/files)
-[![Greenkeeper badge](https://badges.greenkeeper.io/fvdm/nodejs-readcsv.svg)](https://greenkeeper.io/)
 
 
 ## Example
 
 ```js
-const readcsv = require ('readcsv');
+const readcsv = require( 'readcsv' );
 
 const file = '/path/to/file.csv';
 
-readcsv (true, file, (err, data) => {
-  if (err) {
-    console.log (err);
+readcsv( true, file, ( err, data ) => {
+  if ( err ) {
+    console.log( err );
     return;
   }
 
-  console.log (data);
-});
+  console.log( data );
+} );
 ```
 
 Input:
 
 ```txt
-"One","Two","Three"
-"Hello","World","!!"
+"One", "Two", "Three"
+"Hello", "World", "!!"
 ```
 
 Output:
@@ -49,26 +46,26 @@ Output:
 
 ## Installation
 
-`npm i readcsv --save`
+`npm i readcsv`
 
 
 ## Usage
 
-### readcsv ( [head], file, callback )
-
+### readcsv
+**( [head], file, callback )**
 
 #### Only parse the lines
 
 Result: `array` with `array` items.
 
 ```js
-readcsv ('file.csv', (err, data) => {
-  if (err) { return console.log (err); }
+readcsv( 'file.csv', ( err, data ) => {
+  if ( err ) { return console.log( err ); }
 
-  data.forEach ((line, i) => {
-    console.log (i + ' - ' + line[0] + ' - ' + line[1]);
-  });
-});
+  data.forEach ( ( line, i ) => {
+    console.log( `${i} - ${line[0]} - ${line[1]}` );
+ } );
+} );
 ```
 
 
@@ -77,13 +74,13 @@ readcsv ('file.csv', (err, data) => {
 Result: `array` with `object` items.
 
 ```js
-readcsv (true, 'file.csv', (err, data) => {
-  if (err) { return console.log (err); }
+readcsv( true, 'file.csv', ( err, data ) => {
+  if ( err ) { return console.log( err ); }
 
-  data.forEach (line => {
-    console.log (line.Name + ' lives in ' + line.City);
-  });
-});
+  data.forEach ( line => {
+    console.log( `${line.Name} lives in ${line.City}` );
+ } );
+} );
 ```
 
 
@@ -94,18 +91,17 @@ Result: `array` with `object` items.
 ```js
 const head = ['Name', 'City'];
 
-readcsv (head, 'file.csv', (err, data) => {
-  if (err) { return console.log (err); }
+readcsv( head, 'file.csv', ( err, data ) => {
+  if ( err ) { return console.log( err ); }
 
-  data.forEach (line => {
-    console.log (line.Name + ' lives in ' + line.City);
-  });
-});
+  data.forEach ( line => {
+    console.log( `${line.Name} lives in ${line.City}` );
+ } );
+} );
 ```
 
 
-License
--------
+## License
 
 This is free and unencumbered software released into the public domain.
 
@@ -130,11 +126,8 @@ OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
-For more information, please refer to <http://unlicense.org>
+For more information, please refer to <https://unlicense.org>
 
-
-Author
-------
 
 ## Author
 
