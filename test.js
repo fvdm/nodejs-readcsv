@@ -6,47 +6,55 @@ const customHead = ['Test', 'Times', 'Ahead'];
 
 function testFileNohead ( file, test ) {
   app( file, ( err, data ) => {
+    const data0 = data?.[0];
+    const data1 = data?.[1];
+
     test( err )
       .isArray( 'fail', 'data', data )
       .isNotEmpty( 'fail', 'data', data )
-      .isArray( 'fail', 'data[0]', data?.[0] )
-      .isExactly( 'fail', 'data[0][0]', data?.[0]?.[0], 'One' )
-      .isExactly( 'fail', 'data[0][1]', data?.[0]?.[1], 'Two' )
-      .isExactly( 'fail', 'data[0][2]', data?.[0]?.[2], 'Three' )
-      .isArray( 'fail', 'data[1]', data?.[1] )
-      .isExactly( 'fail', 'data[1][0]', data?.[1]?.[0], 'Hello' )
-      .isExactly( 'fail', 'data[1][1]', data?.[1]?.[1], 'World' )
-      .isExactly( 'fail', 'data[1][2]', data?.[1]?.[2], '!!' )
+      .isArray( 'fail', 'data[0]', data0 )
+      .isExactly( 'fail', 'data[0][0]', data0?.[0], 'One' )
+      .isExactly( 'fail', 'data[0][1]', data0?.[1], 'Two' )
+      .isExactly( 'fail', 'data[0][2]', data0?.[2], 'Three' )
+      .isArray( 'fail', 'data[1]', data1 )
+      .isExactly( 'fail', 'data[1][0]', data1?.[0], 'Hello' )
+      .isExactly( 'fail', 'data[1][1]', data1?.[1], 'World' )
+      .isExactly( 'fail', 'data[1][2]', data1?.[2], '!!' )
       .done();
   } );
 }
 
 function testFileAuto ( head, file, test ) {
   app( head, file, ( err, data ) => {
+    const data0 = data?.[0];
+
     test( err )
       .isArray( 'fail', 'data', data )
       .isNotEmpty( 'fail', 'data', data )
-      .isArray( 'fail', 'data[0]', data?.[0] )
-      .isExactly( 'fail', 'data[0].One', data?.[0]?.One, 'Hello' )
-      .isExactly( 'fail', 'data[0].Two', data?.[0]?.Two, 'World' )
-      .isExactly( 'fail', 'data[0].Three', data?.[0]?.Three, '!!' )
+      .isObject( 'fail', 'data[0]', data0 )
+      .isExactly( 'fail', 'data[0].One', data0?.One, 'Hello' )
+      .isExactly( 'fail', 'data[0].Two', data0?.Two, 'World' )
+      .isExactly( 'fail', 'data[0].Three', data0?.Three, '!!' )
       .done();
   } );
 }
 
 function testFileCustom ( head, file, test ) {
   app( head, file, ( err, data ) => {
+    const data0 = data?.[0];
+    const data1 = data?.[1];
+
     test( err )
       .isArray( 'fail', 'data', data )
       .isNotEmpty( 'fail', 'data', data )
-      .isArray( 'fail', 'data[0]', data?.[0] )
-      .isExactly( 'fail', 'data[0].Test', data?.[0]?.Test, 'One' )
-      .isExactly( 'fail', 'data[0].Times', data?.[0]?.Times, 'Two' )
-      .isExactly( 'fail', 'data[0].Ahead', data?.[0]?.Ahead, 'Three' )
-      .isObject( 'fail', 'data[1]', data?.[1] )
-      .isExactly( 'fail', 'data[1].Test', data?.[1]?.Test, 'Hello' )
-      .isExactly( 'fail', 'data[1].Times', data?.[1]?.Times, 'World' )
-      .isExactly( 'fail', 'data[1].Ahead', data?.[1]?.Ahead, '!!' )
+      .isObject( 'fail', 'data[0]', data0 )
+      .isExactly( 'fail', 'data[0].Test', data0?.Test, 'One' )
+      .isExactly( 'fail', 'data[0].Times', data0?.Times, 'Two' )
+      .isExactly( 'fail', 'data[0].Ahead', data0?.Ahead, 'Three' )
+      .isObject( 'fail', 'data[1]', data1 )
+      .isExactly( 'fail', 'data[1].Test', data1?.Test, 'Hello' )
+      .isExactly( 'fail', 'data[1].Times', data1?.Times, 'World' )
+      .isExactly( 'fail', 'data[1].Ahead', data1?.Ahead, '!!' )
       .done();
   } );
 }

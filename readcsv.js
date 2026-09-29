@@ -15,8 +15,8 @@ const fs = require( 'fs' );
  * Parse plain text to lines
  * and detect CSV format
  *
- * @param   {string}  data  Plain text document
- * @return  {object}        props: lines, sep, quotes
+ * @param   {string}       data  Plain text document
+ * @return  {object|null}        props: lines, sep, quotes
  */
 
 function parseText ( data ) {
@@ -28,19 +28,32 @@ function parseText ( data ) {
     .trim()
     .split( linebreak );
 
+  // Comma, single-quote
   if ( result.lines[0].match( '\',\'' ) ) {
     result.sep = ',';
     result.quotes = '\'';
-  } else if ( result.lines[0].match( '\';\'' ) ) {
+  }
+
+  // Semicolon, single-quote
+  else if ( result.lines[0].match( '\';\'' ) ) {
     result.sep = ';';
     result.quotes = '\'';
-  } else if ( result.lines[0].match( '","' ) ) {
+  }
+
+  // Comma, double-quote
+  else if ( result.lines[0].match( '","' ) ) {
     result.sep = ',';
     result.quotes = '"';
-  } else if ( result.lines[0].match( '";"' ) ) {
+  }
+
+  // Semicolon, double-quote
+  else if ( result.lines[0].match( '";"' ) ) {
     result.sep = ';';
     result.quotes = '"';
-  } else {
+  }
+
+  // Parsing failed
+  else {
     result = null;
   }
 
@@ -63,22 +76,29 @@ function parseText ( data ) {
 function parseLines ( data, head ) {
   let output = [];
 
-  data.lines.forEach ( ( line, i ) => {
+  data.lines.forEach( ( line, i ) => {
     let tx = {};
 
     line = line.split( data.quotes + data.sep + data.quotes );
     line[0] = line[0].slice( 1 );
     line[line.length - 1] = line[line.length - 1].slice( 0, -1 );
 
+    // Parse header from file
     if ( head === true && i === 0 ) {
       head = line;
-    } else if ( head ) {
-      head.forEach ( ( name, key ) => {
+    }
+
+    // Use provided header
+    else if ( head ) {
+      head.forEach( ( name, key ) => {
         tx[name] = line[key];
       } );
 
       output.push( tx );
-    } else {
+    }
+
+    // Data line
+    else {
       output.push( line );
     }
   } );
@@ -111,6 +131,7 @@ module.exports = ( head, file, callback ) => {
     let result;
     let data;
 
+    // Filesystem error
     if ( err ) {
       callback( err );
       return;
@@ -118,12 +139,15 @@ module.exports = ( head, file, callback ) => {
 
     data = parseText( text );
 
+    // All good
     if ( data ) {
       result = parseLines( data, head );
       callback( null, result );
-    } else {
-      error = new Error( 'cannot detect line format' );
-      callback( error );
+      return;
     }
+
+    // Parsing error
+    error = new Error( 'cannot detect line format' );
+    callback( error );
   } );
 };
