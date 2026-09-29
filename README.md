@@ -136,6 +136,7 @@ For more information, please refer to <http://unlicense.org>
 Author
 ------
 
-[Franklin van de Meent](https://frankl.in)
+## Author
 
-[Buy me a coffee](https://ko-fi.com/franklin)
+[Franklin](https://frankl.in)
+| [Buy me a coffee](https://ko-fi.com/franklin)

@@ -1,7 +1,7 @@
 /*
 Name:          readcsv.js
 Description:   Parse CSV file with automatic format detection
-Author:        Franklin van de Meent (https://frankl.in)
+Author:        Franklin (https://frankl.in)
 Source code:   https://github.com/fvdm/nodejs-readcsv
 Feedback:      https://github.com/fvdm/nodejs-readcsv/issues
 License:       Unlicense (Public Domain)
