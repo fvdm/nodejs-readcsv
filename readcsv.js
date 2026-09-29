@@ -34,25 +34,25 @@ function parseText ( data ) {
     result.quotes = '\'';
   }
 
-  // Semicolon, single-quote 
+  // Semicolon, single-quote
   else if ( result.lines[0].match( '\';\'' ) ) {
     result.sep = ';';
     result.quotes = '\'';
   }
 
-  // Comma, double-quote 
+  // Comma, double-quote
   else if ( result.lines[0].match( '","' ) ) {
     result.sep = ',';
     result.quotes = '"';
   }
 
-  // Semicolon, double-quote 
+  // Semicolon, double-quote
   else if ( result.lines[0].match( '";"' ) ) {
     result.sep = ';';
     result.quotes = '"';
   }
 
-  // Parsing failed 
+  // Parsing failed
   else {
     result = null;
   }
@@ -88,7 +88,7 @@ function parseLines ( data, head ) {
       head = line;
     }
 
-    // Use provided header 
+    // Use provided header
     else if ( head ) {
       head.forEach( ( name, key ) => {
         tx[name] = line[key];
@@ -145,7 +145,7 @@ module.exports = ( head, file, callback ) => {
       callback( null, result );
       return;
     }
- 
+
     // Parsing error
     error = new Error( 'cannot detect line format' );
     callback( error );

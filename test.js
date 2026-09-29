@@ -8,7 +8,7 @@ function testFileNohead ( file, test ) {
   app( file, ( err, data ) => {
     const data0 = data?.[0];
     const data1 = data?.[1];
- 
+
     test( err )
       .isArray( 'fail', 'data', data )
       .isNotEmpty( 'fail', 'data', data )
@@ -27,7 +27,7 @@ function testFileNohead ( file, test ) {
 function testFileAuto ( head, file, test ) {
   app( head, file, ( err, data ) => {
     const data0 = data?.[0];
- 
+
     test( err )
       .isArray( 'fail', 'data', data )
       .isNotEmpty( 'fail', 'data', data )
@@ -43,7 +43,7 @@ function testFileCustom ( head, file, test ) {
   app( head, file, ( err, data ) => {
     const data0 = data?.[0];
     const data1 = data?.[1];
- 
+
     test( err )
       .isArray( 'fail', 'data', data )
       .isNotEmpty( 'fail', 'data', data )
