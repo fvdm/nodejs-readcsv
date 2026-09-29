@@ -31,16 +31,20 @@ function parseText ( data ) {
   if ( result.lines[0].match( '\',\'' ) ) {
     result.sep = ',';
     result.quotes = '\'';
-  } else if ( result.lines[0].match( '\';\'' ) ) {
+  }
+  else if ( result.lines[0].match( '\';\'' ) ) {
     result.sep = ';';
     result.quotes = '\'';
-  } else if ( result.lines[0].match( '","' ) ) {
+  }
+  else if ( result.lines[0].match( '","' ) ) {
     result.sep = ',';
     result.quotes = '"';
-  } else if ( result.lines[0].match( '";"' ) ) {
+  }
+  else if ( result.lines[0].match( '";"' ) ) {
     result.sep = ';';
     result.quotes = '"';
-  } else {
+  }
+  else {
     result = null;
   }
 
@@ -63,7 +67,7 @@ function parseText ( data ) {
 function parseLines ( data, head ) {
   let output = [];
 
-  data.lines.forEach ( ( line, i ) => {
+  data.lines.forEach( ( line, i ) => {
     let tx = {};
 
     line = line.split( data.quotes + data.sep + data.quotes );
@@ -73,7 +77,7 @@ function parseLines ( data, head ) {
     if ( head === true && i === 0 ) {
       head = line;
     } else if ( head ) {
-      head.forEach ( ( name, key ) => {
+      head.forEach( ( name, key ) => {
         tx[name] = line[key];
       } );
 
